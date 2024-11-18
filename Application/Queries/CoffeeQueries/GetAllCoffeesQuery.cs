@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using CoffeeShop.Core.Models;
+using CoffeeShop.Database.SqlServer.Entities;
 
 namespace CoffeeShop.Application.Queries.CoffeeQueries;
 

@@ -1,5 +1,5 @@
 ﻿using CoffeeShop.Application.Commands.CoffeeCommands;
-using CoffeeShop.Core.Models;
+using CoffeeShop.Database.SqlServer.Entities;
 using CoffeeShop.Infrastructure.Repositories;
 using MediatR;
 
@@ -25,7 +25,10 @@ public class UpdateCoffeeHandler : IRequestHandler<UpdateCoffeeCommand, Unit>
         coffee.Name = request.Name;
         coffee.Price = request.Price;
         coffee.Description = request.Description;
+        coffee.Intensity = request.Intensity;
         coffee.ImageUrl = request.ImageUrl;
+        coffee.Type = request.Type;
+        coffee.Brand = request.Brand;
 
         await _repository.UpdateAsync(coffee);
         return Unit.Value;

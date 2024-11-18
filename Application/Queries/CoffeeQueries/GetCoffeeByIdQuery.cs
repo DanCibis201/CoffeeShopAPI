@@ -1,5 +1,5 @@
-﻿using CoffeeShop.Core.Models;
-using CoffeeShop.Infrastructure.Queries;
+﻿using CoffeeShop.Database.SqlServer.Entities;
+using CoffeeShop.Infrastructure.Core.Queries;
 
 namespace CoffeeShop.Application.Queries.CoffeeQueries;
 

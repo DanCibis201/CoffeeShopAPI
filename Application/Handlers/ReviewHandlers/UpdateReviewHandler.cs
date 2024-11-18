@@ -1,5 +1,5 @@
 ﻿using CoffeeShop.Application.Commands.ReviewCommands;
-using CoffeeShop.Core.Models;
+using CoffeeShop.Database.SqlServer.Entities;
 using CoffeeShop.Infrastructure.Repositories;
 using MediatR;
 

@@ -1,5 +1,5 @@
 ﻿using CoffeeShop.Application.Commands.CoffeeCommands;
-using CoffeeShop.Core.Models;
+using CoffeeShop.Database.SqlServer.Entities;
 using CoffeeShop.Infrastructure.Repositories;
 using MediatR;
 
@@ -22,7 +22,10 @@ namespace CoffeeShop.Application.Handlers.CoffeeHandlers
                 Name = request.Name,
                 Price = request.Price,
                 Description = request.Description,
-                ImageUrl = request.ImageUrl
+                ImageUrl = request.ImageUrl,
+                Intensity = request.Intensity,
+                Type = request.Type,
+                Brand = request.Brand
             };
 
             await _repository.AddAsync(coffee);
