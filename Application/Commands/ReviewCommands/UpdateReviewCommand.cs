@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using System.Text.Json.Serialization;
 
 namespace CoffeeShop.Application.Commands.ReviewCommands;
 
@@ -9,7 +10,10 @@ public class UpdateReviewCommand : IRequest<Unit>
     public string? UserName { get; set; }
     public string Comment { get; set; }
     public int Rating { get; set; }
-    public UpdateReviewCommand(Guid id, Guid coffeeId, string userName, string comment, int rating)
+    
+    [JsonConstructor]
+    public UpdateReviewCommand(Guid id, Guid coffeeId, 
+        string userName, string comment, int rating)
     {
         Id = id;
         CoffeeId = coffeeId;

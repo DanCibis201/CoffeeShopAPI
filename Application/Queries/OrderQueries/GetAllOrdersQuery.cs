@@ -1,4 +1,4 @@
-﻿using CoffeeShop.Core.Models;
+﻿using CoffeeShop.Database.SqlServer.Entities;
 using MediatR;
 
 namespace CoffeeShop.Application.Queries.OrderQueries;

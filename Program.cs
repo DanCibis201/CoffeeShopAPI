@@ -1,7 +1,6 @@
-using CoffeeShop.Core.Models;
-using CoffeeShop.Database.Context;
-using CoffeeShop.Database.Repositories;
-using CoffeeShop.Infrastructure.Repositories;
+using CoffeeShop.Database.SqlServer.AutoMigration;
+using CoffeeShop.Database.SqlServer.Context;
+using CoffeeShop.Infrastructure.Core.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -18,9 +17,8 @@ builder.Services.AddControllers().
         options.JsonSerializerOptions.WriteIndented = true;
     });
 
-builder.Services.AddScoped<IRepository<Coffee>, CoffeeRepository>();
-builder.Services.AddScoped<IRepository<Review>, ReviewRepository>();
-builder.Services.AddScoped<IRepository<Order>, OrderRepository>();
+builder.Services.LoadDependencyModules(
+    typeof(CoffeeShop.Database.SqlServer.Module).Assembly);
 
 builder.Services.AddMediatR(cfg =>
 {
@@ -60,5 +58,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
+
+app.CreateDbIfDoesNotExist();
 
 app.Run();
