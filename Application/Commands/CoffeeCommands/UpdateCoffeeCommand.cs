@@ -1,5 +1,6 @@
 ﻿using CoffeeShop.Infrastructure.Core.Enums;
 using MediatR;
+using System.Text.Json.Serialization;
 
 namespace CoffeeShop.Application.Commands.CoffeeCommands;
 
@@ -14,10 +15,11 @@ public class UpdateCoffeeCommand : IRequest<Unit>
     public CoffeeType? Type { get; set; }
     public CoffeeBrand? Brand { get; set; }
 
+    [JsonConstructor]
     public UpdateCoffeeCommand(Guid id, string name, 
-        decimal price, string description, 
-        string imageUrl, int intensity,
-        CoffeeType type, CoffeeBrand brand)
+        decimal price, string? description, 
+        string? imageUrl, int? intensity,
+        CoffeeType? type, CoffeeBrand? brand)
     {
         Id = id;
         Name = name;
