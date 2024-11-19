@@ -86,8 +86,8 @@ The application follows the CQRS architecture pattern, which separates the read 
       "description": "Rich and strong coffee",
       "intensity": 5,
       "imageUrl": "http://example.com/image.jpg",
-      "type": "Espresso",
-      "brand": "CoffeeBrand"
+      "type": 1,
+      "brand": 1
     }
     ```
   
@@ -103,8 +103,8 @@ The application follows the CQRS architecture pattern, which separates the read 
       "description": "Rich and strong coffee",
       "intensity": 5,
       "imageUrl": "http://example.com/image.jpg",
-      "type": "Espresso",
-      "brand": "CoffeeBrand"
+      "type": 1,
+      "brand": 1
     }
     ```
 
