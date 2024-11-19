@@ -1,7 +1,9 @@
 ﻿using CoffeeShop.Database.Repositories;
+using CoffeeShop.Database.SqlServer.Context;
 using CoffeeShop.Database.SqlServer.Entities;
 using CoffeeShop.Infrastructure.Core.DependencyInjection;
 using CoffeeShop.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CoffeeShop.Database.SqlServer;

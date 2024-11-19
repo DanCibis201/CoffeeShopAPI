@@ -1,14 +1,16 @@
 using CoffeeShop.Database.SqlServer.AutoMigration;
-using CoffeeShop.Database.SqlServer.Context;
+using CoffeeShop.Database.SqlServer.DependencyInjection;
 using CoffeeShop.Infrastructure.Core.DependencyInjection;
+using CoffeShop.Security.AutoMigration;
+using CoffeShop.Security.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<CoffeeAppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddSecurityDbContext(builder.Configuration.GetConnectionString("SecurityConnection"));
+builder.Services.AddCoffeeDbContext(builder.Configuration.GetConnectionString("DatabaseConnection"));
 
 builder.Services.AddControllers().
     AddJsonOptions(options =>
@@ -59,6 +61,7 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
 });
 
+app.CreateSecurityDbIfDoesNotExist();
 app.CreateDbIfDoesNotExist();
 
 app.Run();

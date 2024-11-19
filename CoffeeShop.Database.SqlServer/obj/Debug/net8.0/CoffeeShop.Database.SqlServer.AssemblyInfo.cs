@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoffeeShop.Database.SqlServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c9cbcfb04c57807b17fb5ea11b1aeef4a3c54031")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+021f67f55086ca720cbb20e3602c868ecd5d441e")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoffeeShop.Database.SqlServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoffeeShop.Database.SqlServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
