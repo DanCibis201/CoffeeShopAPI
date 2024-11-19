@@ -121,19 +121,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\D003.exe\\Code\\CS\\PersonalProjects\\CoffeePlatform\\CoffeeShopBackend\\CoffeeShopAPI\\CoffeeShop.Infrastructure.Core\\CoffeeShop.Infrastructure.Core.csproj",
+      "projectUniqueName": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeeShop.Infrastructure.Core\\CoffeeShop.Infrastructure.Core.csproj",
       "projectName": "CoffeeShop.Infrastructure.Core",
-      "projectPath": "D:\\D003.exe\\Code\\CS\\PersonalProjects\\CoffeePlatform\\CoffeeShopBackend\\CoffeeShopAPI\\CoffeeShop.Infrastructure.Core\\CoffeeShop.Infrastructure.Core.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\D003.exe\\Code\\CS\\PersonalProjects\\CoffeePlatform\\CoffeeShopBackend\\CoffeeShopAPI\\CoffeeShop.Infrastructure.Core\\obj\\",
+      "projectPath": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeeShop.Infrastructure.Core\\CoffeeShop.Infrastructure.Core.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeeShop.Infrastructure.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

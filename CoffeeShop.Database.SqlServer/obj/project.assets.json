@@ -3014,19 +3014,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\D003.exe\\Code\\CS\\PersonalProjects\\CoffeePlatform\\CoffeeShopBackend\\CoffeeShopAPI\\CoffeeShop.Database.SqlServer\\CoffeeShop.Database.SqlServer.csproj",
+      "projectUniqueName": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeeShop.Database.SqlServer\\CoffeeShop.Database.SqlServer.csproj",
       "projectName": "CoffeeShop.Database.SqlServer",
-      "projectPath": "D:\\D003.exe\\Code\\CS\\PersonalProjects\\CoffeePlatform\\CoffeeShopBackend\\CoffeeShopAPI\\CoffeeShop.Database.SqlServer\\CoffeeShop.Database.SqlServer.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\D003.exe\\Code\\CS\\PersonalProjects\\CoffeePlatform\\CoffeeShopBackend\\CoffeeShopAPI\\CoffeeShop.Database.SqlServer\\obj\\",
+      "projectPath": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeeShop.Database.SqlServer\\CoffeeShop.Database.SqlServer.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeeShop.Database.SqlServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3040,8 +3040,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\D003.exe\\Code\\CS\\PersonalProjects\\CoffeePlatform\\CoffeeShopBackend\\CoffeeShopAPI\\CoffeeShop.Infrastructure.Core\\CoffeeShop.Infrastructure.Core.csproj": {
-              "projectPath": "D:\\D003.exe\\Code\\CS\\PersonalProjects\\CoffeePlatform\\CoffeeShopBackend\\CoffeeShopAPI\\CoffeeShop.Infrastructure.Core\\CoffeeShop.Infrastructure.Core.csproj"
+            "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeeShop.Infrastructure.Core\\CoffeeShop.Infrastructure.Core.csproj": {
+              "projectPath": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeeShop.Infrastructure.Core\\CoffeeShop.Infrastructure.Core.csproj"
             }
           }
         }
