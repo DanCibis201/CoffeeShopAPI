@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace CoffeShop.Security.Models;
+namespace CoffeeShop.Security.Models;
 
-public class User : IdentityUser<Guid>
+public class User : IdentityUser
 {
     public string? Initials { get; set; }
 }

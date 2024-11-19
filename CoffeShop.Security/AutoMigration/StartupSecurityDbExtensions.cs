@@ -1,11 +1,11 @@
-﻿using CoffeShop.Security.Context;
+﻿using CoffeeShop.Security.Context;
 using EFCore.AutomaticMigrations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace CoffeShop.Security.AutoMigration;
+namespace CoffeeShop.Security.AutoMigration;
 
 public static class StartupSecurityDbExtensions
 {

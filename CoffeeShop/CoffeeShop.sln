@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeShop.Infrastructure.C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{A2BEAB1A-FADF-48CA-BC6F-A1CF56C10273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeShop.Security", "..\CoffeShop.Security\CoffeShop.Security.csproj", "{B4441228-7030-4A1D-844C-DC5B04EE70EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeShop.Security", "..\CoffeShop.Security\CoffeeShop.Security.csproj", "{B4441228-7030-4A1D-844C-DC5B04EE70EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

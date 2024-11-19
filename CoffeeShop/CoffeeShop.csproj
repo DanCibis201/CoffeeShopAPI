@@ -22,7 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CoffeeShop.Database.SqlServer\CoffeeShop.Database.SqlServer.csproj" />
     <ProjectReference Include="..\CoffeeShop.Infrastructure.Core\CoffeeShop.Infrastructure.Core.csproj" />
-    <ProjectReference Include="..\CoffeShop.Security\CoffeShop.Security.csproj" />
+    <ProjectReference Include="..\CoffeShop.Security\CoffeeShop.Security.csproj" />
   </ItemGroup>
 
 </Project>

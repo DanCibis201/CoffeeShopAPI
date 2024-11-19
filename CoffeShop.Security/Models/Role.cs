@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace CoffeShop.Security.Models;
+namespace CoffeeShop.Security.Models;
 
-public class Role : IdentityRole<Guid>
+public class Role : IdentityRole
 {
 }

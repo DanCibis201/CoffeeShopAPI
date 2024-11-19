@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeShop.Security\\CoffeShop.Security.csproj": {}
+    "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeShop.Security\\CoffeeShop.Security.csproj": {}
   },
   "projects": {
     "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeeShop.Infrastructure.Core\\CoffeeShop.Infrastructure.Core.csproj": {
@@ -70,12 +70,12 @@
         }
       }
     },
-    "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeShop.Security\\CoffeShop.Security.csproj": {
+    "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeShop.Security\\CoffeeShop.Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeShop.Security\\CoffeShop.Security.csproj",
-        "projectName": "CoffeShop.Security",
-        "projectPath": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeShop.Security\\CoffeShop.Security.csproj",
+        "projectUniqueName": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeShop.Security\\CoffeeShop.Security.csproj",
+        "projectName": "CoffeeShop.Security",
+        "projectPath": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeShop.Security\\CoffeeShop.Security.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
         "outputPath": "D:\\Univer\\Master\\ASS\\CoffeeECommerce\\CoffeeShop\\CoffeShop.Security\\obj\\",
         "projectStyle": "PackageReference",

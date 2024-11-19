@@ -1,12 +1,14 @@
 ﻿using CoffeeShop.Application.Commands.ReviewCommands;
 using CoffeeShop.Application.Queries.ReviewQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeShop.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ReviewController : ControllerBase
 {
     private readonly IMediator _mediator;

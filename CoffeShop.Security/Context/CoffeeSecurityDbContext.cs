@@ -1,10 +1,10 @@
-﻿using CoffeShop.Security.Models;
+﻿using CoffeeShop.Security.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace CoffeShop.Security.Context;
+namespace CoffeeShop.Security.Context;
 
-public class CoffeeSecurityDbContext : IdentityDbContext<User, Role, Guid>
+public class CoffeeSecurityDbContext : IdentityDbContext<User>
 {
     public CoffeeSecurityDbContext(DbContextOptions<CoffeeSecurityDbContext> options) : base(options)
     {

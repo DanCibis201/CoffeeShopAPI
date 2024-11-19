@@ -1,8 +1,8 @@
-﻿using CoffeShop.Security.Context;
+﻿using CoffeeShop.Security.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CoffeShop.Security.DependencyInjection;
+namespace CoffeeShop.Security.DependencyInjection;
 
 public static class ServiceStartup
 {
