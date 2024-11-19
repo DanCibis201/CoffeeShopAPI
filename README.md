@@ -8,7 +8,6 @@ This repository contains the Backend API for the CoffeeShop Ecommerce applicatio
 - [Architecture](#architecture)
 - [Getting Started](#getting-started)
 - [Endpoints](#endpoints)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Technologies Used
@@ -112,10 +111,6 @@ The application follows the CQRS architecture pattern, which separates the read 
 - **Delete Coffee**
   - **Endpoint**: `DELETE /api/coffees/{id}`
   - **Description**: Deletes a coffee by ID.
-
-## Contributing
-
-Contributions are welcome! Please fork this repository and submit a pull request for any improvements or additions.
 
 ## License
 
