@@ -1,24 +1,28 @@
 using CoffeeShop.Database.SqlServer.AutoMigration;
-using CoffeeShop.Database.SqlServer.Context;
+using CoffeeShop.Database.SqlServer.DependencyInjection;
 using CoffeeShop.Infrastructure.Core.DependencyInjection;
+using CoffeeShop.Security.AutoMigration;
+using CoffeeShop.Security.DependencyInjection;
+using CoffeeShop.Security.Models;
+using CoffeeShop.Security.Modules;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<CoffeeAppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddSecurityDbContext(builder.Configuration.GetConnectionString("SecurityConnection"));
+builder.Services.AddCoffeeDbContext(builder.Configuration.GetConnectionString("DatabaseConnection"));
 
-builder.Services.AddControllers().
-    AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-        options.JsonSerializerOptions.WriteIndented = true;
-    });
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
 
 builder.Services.LoadDependencyModules(
-    typeof(CoffeeShop.Database.SqlServer.Module).Assembly);
+    typeof(CoffeeShop.Database.SqlServer.Module).Assembly,
+    typeof(ModuleServices).Assembly);
 
 builder.Services.AddMediatR(cfg =>
 {
@@ -54,11 +58,15 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-});
+app.ConfigureDependencyModules(typeof(ModuleBuilders));
 
+app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+    });
+
+app.MapIdentityApi<User>();
+app.CreateSecurityDbIfDoesNotExist();
 app.CreateDbIfDoesNotExist();
 
 app.Run();

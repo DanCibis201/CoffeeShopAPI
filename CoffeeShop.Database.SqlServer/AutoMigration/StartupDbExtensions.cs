@@ -1,5 +1,7 @@
 ﻿using CoffeeShop.Database.SqlServer.Context;
 using EFCore.AutomaticMigrations;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -13,8 +15,18 @@ public static class StartupDbExtensions
         var services = scope.ServiceProvider;
 
         var coffeeContext = services.GetRequiredService<CoffeeAppDbContext>();
-        coffeeContext.Database.EnsureCreated();
 
-        await coffeeContext.MigrateToLatestVersionAsync();
+        var isDatabaseCreated = coffeeContext.Database.EnsureCreated();
+
+        if (!isDatabaseCreated)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<CoffeeAppDbContext>();
+            optionsBuilder.UseSqlServer(services.GetRequiredService<IConfiguration>().GetConnectionString("DatabaseConnection"));
+
+            using var newCoffeeContext = new CoffeeAppDbContext(optionsBuilder.Options);
+            await newCoffeeContext.Database.EnsureCreatedAsync();
+        }
+        else
+            await coffeeContext.MigrateToLatestVersionAsync();
     }
 }

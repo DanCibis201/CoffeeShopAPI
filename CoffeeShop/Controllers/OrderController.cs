@@ -1,12 +1,14 @@
 ﻿using CoffeeShop.Application.Commands.OrderCommands;
 using CoffeeShop.Application.Queries.OrderQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeShop.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class OrderController : ControllerBase
 {
     private readonly IMediator _mediator;
