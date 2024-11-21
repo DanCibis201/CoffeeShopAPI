@@ -1,6 +1,7 @@
 ﻿using CoffeeShop.Infrastructure.Core.DependencyInjection;
 using CoffeeShop.Security.Context;
 using CoffeeShop.Security.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,5 +23,12 @@ public class ModuleServices : DependencyModule
         services.AddIdentityCore<User>()
             .AddEntityFrameworkStores<CoffeeSecurityDbContext>()
             .AddApiEndpoints();
+
+        services.ConfigureApplicationCookie(options =>
+        {
+            options.Cookie.HttpOnly = true;
+            options.Cookie.SameSite = SameSiteMode.None;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        });
     }
 }

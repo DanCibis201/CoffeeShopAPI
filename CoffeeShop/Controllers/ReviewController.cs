@@ -36,6 +36,7 @@ public class ReviewController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAllReviews()
     {
         try
@@ -51,7 +52,8 @@ public class ReviewController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetCoffeeById([FromRoute] Guid id)
+    [AllowAnonymous]
+    public async Task<IActionResult> GetReviewById([FromRoute] Guid id)
     {
         try
         {
