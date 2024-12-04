@@ -1,14 +1,12 @@
 ﻿using CoffeeShop.Application.Commands.CoffeeCommands;
 using CoffeeShop.Application.Queries.CoffeeQueries;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeShop.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
 public class CoffeeController : ControllerBase
 {
     private readonly IMediator _mediator;
