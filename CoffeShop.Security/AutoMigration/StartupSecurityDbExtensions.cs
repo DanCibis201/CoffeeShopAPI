@@ -17,15 +17,15 @@ public static class StartupSecurityDbExtensions
         var securityContext = services.GetRequiredService<CoffeeSecurityDbContext>();
         var isDatabaseCreated = securityContext.Database.EnsureCreated();
 
-        if (!isDatabaseCreated)
+        if (isDatabaseCreated)
+            await securityContext.MigrateToLatestVersionAsync(new DbMigrationsOptions { ResetDatabaseSchema = true });
+        else
         {
             var optionsBuilder = new DbContextOptionsBuilder<CoffeeSecurityDbContext>();
             optionsBuilder.UseSqlServer(services.GetRequiredService<IConfiguration>().GetConnectionString("SecurityConnection"));
-            
+
             using var newSecurityContext = new CoffeeSecurityDbContext(optionsBuilder.Options);
             await newSecurityContext.Database.EnsureCreatedAsync();
         }
-        else
-            await securityContext.MigrateToLatestVersionAsync();
     }
 }

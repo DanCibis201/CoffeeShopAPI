@@ -1,21 +1,21 @@
 ﻿using CoffeeShop.Application.Queries.OrderQueries;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
+using CoffeeShop.Infrastructure.Proxy.Proxies;
 using MediatR;
 
 namespace CoffeeShop.Application.Handlers.OrderHandlers;
 
 public class GetOrderByIdHandler : IRequestHandler<GetOrderByIdQuery, Order>
 {
-    private readonly IRepository<Order> _repository;
+    private readonly IProxy<Order> _proxy;
 
-    public GetOrderByIdHandler(IRepository<Order> repository)
+    public GetOrderByIdHandler(IProxy<Order> proxy)
     {
-        _repository = repository;
+        _proxy = proxy;
     }
 
     public async Task<Order> Handle(GetOrderByIdQuery request, CancellationToken cancellationToken)
     {
-        return await _repository.GetByIdAsync(request.Id);
+        return await _proxy.GetByIdAsync(request.Id);
     }
 }

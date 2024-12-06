@@ -1,17 +1,17 @@
 ﻿using CoffeeShop.Application.Commands.ReviewCommands;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
+using CoffeeShop.Infrastructure.Proxy.Proxies;
 using MediatR;
 
 namespace CoffeeShop.Application.Handlers.ReviewHandlers;
 
 public class CreateReviewHandler : IRequestHandler<CreateReviewCommand, Unit>
 {
-    private readonly IRepository<Review> _repository;
+    private readonly IProxy<Review> _proxy;
 
-    public CreateReviewHandler(IRepository<Review> repository)
+    public CreateReviewHandler(IProxy<Review> proxy)
     {
-        _repository = repository;
+        _proxy = proxy;
     }
 
     public async Task<Unit> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
@@ -25,7 +25,7 @@ public class CreateReviewHandler : IRequestHandler<CreateReviewCommand, Unit>
             Rating = request.Rating
         };
 
-        await _repository.AddAsync(review);
+        await _proxy.AddAsync(review);
         return Unit.Value;
     }
 }

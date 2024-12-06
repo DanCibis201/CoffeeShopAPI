@@ -1,22 +1,22 @@
 ﻿using CoffeeShop.Application.Commands.ReviewCommands;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
+using CoffeeShop.Infrastructure.Proxy.Proxies;
 using MediatR;
 
 namespace CoffeeShop.Application.Handlers.ReviewHandlers;
 
 public class UpdateReviewHandler : IRequestHandler<UpdateReviewCommand, Unit>
 {
-    private readonly IRepository<Review> _repository;
+    private readonly IProxy<Review> _proxy;
 
-    public UpdateReviewHandler(IRepository<Review> repository)
+    public UpdateReviewHandler(IProxy<Review> proxy)
     {
-        _repository = repository;
+        _proxy = proxy;
     }
 
     public async Task<Unit> Handle(UpdateReviewCommand request, CancellationToken cancellationToken)
     {
-        var review = await _repository.GetByIdAsync(request.Id);
+        var review = await _proxy.GetByIdAsync(request.Id);
         if (review == null)
         {
             throw new KeyNotFoundException("Review not found");
@@ -27,7 +27,7 @@ public class UpdateReviewHandler : IRequestHandler<UpdateReviewCommand, Unit>
         review.Comment = request.Comment;
         review.Rating = request.Rating;
 
-        await _repository.UpdateAsync(review);
+        await _proxy.UpdateAsync(review);
         return Unit.Value;
     }
 }

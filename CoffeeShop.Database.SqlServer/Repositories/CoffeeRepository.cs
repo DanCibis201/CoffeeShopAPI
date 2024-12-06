@@ -1,10 +1,9 @@
 ﻿using CoffeeShop.Database.SqlServer.Context;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace CoffeeShop.Database.Repositories;
+namespace CoffeeShop.Database.SqlServer.Repositories;
 
 public class CoffeeRepository : IRepository<Coffee>
 {
@@ -24,6 +23,7 @@ public class CoffeeRepository : IRepository<Coffee>
             return await _context.Coffees
                 .Include(r => r.Reviews)
                 .Include(o => o.Orders)
+                .AsSplitQuery()
                 .FirstOrDefaultAsync(c => c.Id == id)!;
         }
         catch (Exception ex)

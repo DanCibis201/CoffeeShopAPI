@@ -1,22 +1,22 @@
 ﻿using CoffeeShop.Application.Commands.ReviewCommands;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
+using CoffeeShop.Infrastructure.Proxy.Proxies;
 using MediatR;
 
 namespace CoffeeShop.Application.Handlers.ReviewHandlers;
 
 public class DeleteReviewByIdHandler : IRequestHandler<DeleteReviewByIdCommand, Unit>
 {
-    private readonly IRepository<Review> _repository;
+    private readonly IProxy<Review> _proxy;
 
-    public DeleteReviewByIdHandler(IRepository<Review> repository)
+    public DeleteReviewByIdHandler(IProxy<Review> proxy)
     {
-        _repository = repository;
+        _proxy = proxy;
     }
 
     public async Task<Unit> Handle(DeleteReviewByIdCommand command, CancellationToken cancellationToken)
     {
-        await _repository.DeleteAsync(command.Id);
+        await _proxy.DeleteAsync(command.Id);
         return Unit.Value;
     }
 }

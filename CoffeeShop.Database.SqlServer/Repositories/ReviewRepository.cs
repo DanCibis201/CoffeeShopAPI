@@ -1,10 +1,9 @@
 ﻿using CoffeeShop.Database.SqlServer.Context;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace CoffeeShop.Database.Repositories;
+namespace CoffeeShop.Database.SqlServer.Repositories;
 
 public class ReviewRepository : IRepository<Review>
 {

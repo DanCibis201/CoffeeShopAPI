@@ -22,6 +22,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 builder.Services.LoadDependencyModules(
     typeof(CoffeeShop.Database.SqlServer.Module).Assembly,
+    typeof(CoffeeShop.Infrastructure.Proxy.Module).Assembly,
     typeof(ModuleServices).Assembly);
 
 builder.Services.AddMediatR(cfg =>

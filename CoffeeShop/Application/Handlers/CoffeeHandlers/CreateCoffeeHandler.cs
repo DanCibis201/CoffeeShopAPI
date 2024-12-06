@@ -1,17 +1,17 @@
 ﻿using CoffeeShop.Application.Commands.CoffeeCommands;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
+using CoffeeShop.Infrastructure.Proxy.Proxies;
 using MediatR;
 
 namespace CoffeeShop.Application.Handlers.CoffeeHandlers
 {
     public class CreateCoffeeHandler : IRequestHandler<CreateCoffeeCommand, Unit>
     {
-        private readonly IRepository<Coffee> _repository;
+        private readonly IProxy<Coffee> _proxy;
 
-        public CreateCoffeeHandler(IRepository<Coffee> repository)
+        public CreateCoffeeHandler(IProxy<Coffee> proxy)
         {
-            _repository = repository;
+            _proxy = proxy;
         }
 
         public async Task<Unit> Handle(CreateCoffeeCommand request, CancellationToken cancellationToken)
@@ -28,7 +28,7 @@ namespace CoffeeShop.Application.Handlers.CoffeeHandlers
                 Brand = request.Brand
             };
 
-            await _repository.AddAsync(coffee);
+            await _proxy.AddAsync(coffee);
             return Unit.Value;
         }
     }
