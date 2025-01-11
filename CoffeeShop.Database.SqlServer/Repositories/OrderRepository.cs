@@ -99,5 +99,18 @@ namespace CoffeeShop.Database.SqlServer.Repositories
                 throw;
             }
         }
+
+        public async Task<Order?> GetOrderByCoffeeIdAsync(Guid coffeeId)
+        {
+            try
+            {
+                return await _context.Orders.FirstOrDefaultAsync(o => o.CoffeeId == coffeeId);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while finding order by coffeeId: {coffeeId}.");
+                throw;
+            }
+        }
     }
 }

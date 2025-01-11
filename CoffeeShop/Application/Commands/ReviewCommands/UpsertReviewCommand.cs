@@ -2,7 +2,7 @@
 
 namespace CoffeeShop.Application.Commands.ReviewCommands;
 
-public class CreateReviewCommand : IRequest<Unit>
+public class UpsertReviewCommand : IRequest
 {
     public Guid CoffeeId { get; set; }
     public string UserName { get; set; }

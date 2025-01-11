@@ -94,4 +94,18 @@ public class ReviewRepository : IRepository<Review>
             throw;
         }
     }
+
+    public async Task<Review?> GetUserReviewByCoffeeIdAsync(Guid coffeeId, string userName)
+    {
+        try
+        {
+            return await _context.Reviews.FirstOrDefaultAsync(o => o.CoffeeId == coffeeId &&    
+                                                                   o.UserName == userName);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error occurred while finding review by coffeeId: {coffeeId} for user name: {userName}.");
+            throw;
+        }
+    }
 }

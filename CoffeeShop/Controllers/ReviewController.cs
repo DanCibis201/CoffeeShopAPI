@@ -1,4 +1,5 @@
-﻿using CoffeeShop.Application.Commands.ReviewCommands;
+﻿using CoffeeShop.Application.Commands.OrderCommands;
+using CoffeeShop.Application.Commands.ReviewCommands;
 using CoffeeShop.Application.Queries.ReviewQueries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -18,21 +19,6 @@ public class ReviewController : ControllerBase
     {
         _mediator = mediator;
         _logger = logger;
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> AddReview(CreateReviewCommand command)
-    {
-        try
-        {
-            await _mediator.Send(command);
-            return Ok();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError($"Error while submitting request. Error message {ex.Message}");
-            throw;
-        }
     }
 
     [HttpGet]
@@ -107,6 +93,21 @@ public class ReviewController : ControllerBase
         {
             _logger.LogError($"Error while updating review. Error message: {ex.Message}");
             throw;
+        }
+    }
+
+    [HttpPost("upsert")]
+    public async Task<IActionResult> UpsertReview([FromBody] UpsertReviewCommand command)
+    {
+        try
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error while upserting review. Message: {ex.Message}");
+            return StatusCode(500, "Internal Server Error");
         }
     }
 }

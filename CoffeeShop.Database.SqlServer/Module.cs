@@ -11,6 +11,9 @@ public class Module : DependencyModule
     {
         services.AddSingleton<IDatabaseDeployer, Deployer>();
 
+        services.AddScoped<OrderRepository>();
+        services.AddScoped<ReviewRepository>();
+
         services.AddScoped<IRepository<Coffee>, CoffeeRepository>();
         services.AddScoped<IRepository<Review>, ReviewRepository>();
         services.AddScoped<IRepository<Order>, OrderRepository>();

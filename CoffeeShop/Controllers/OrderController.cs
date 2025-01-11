@@ -18,21 +18,6 @@ public class OrderController : ControllerBase
         _logger = logger;
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateOrder([FromBody] CreateOrderCommand command)
-    {
-        try
-        {
-            await _mediator.Send(command);
-            return Ok();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError($"Error while creating order. Error message: {ex.Message}");
-            throw;
-        }
-    }
-
     [HttpGet]
     public async Task<IActionResult> GetAllOrders()
     {
@@ -103,6 +88,21 @@ public class OrderController : ControllerBase
         {
             _logger.LogError($"Error while updating order. Error message: {ex.Message}");
             throw;
+        }
+    }
+
+    [HttpPost("upsert")]
+    public async Task<IActionResult> UpsertOrder([FromBody] UpsertOrderCommand command)
+    {
+        try
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error while upserting order. Message: {ex.Message}");
+            return StatusCode(500, "Internal Server Error");
         }
     }
 }
