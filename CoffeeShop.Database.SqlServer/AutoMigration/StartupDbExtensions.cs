@@ -19,7 +19,7 @@ public static class StartupDbExtensions
         var isDatabaseCreated = coffeeContext.Database.EnsureCreated();
 
         if (isDatabaseCreated)
-            await coffeeContext.MigrateToLatestVersionAsync(new DbMigrationsOptions { ResetDatabaseSchema = true });
+            await coffeeContext.MigrateToLatestVersionAsync(new DbMigrationsOptions { ResetDatabaseSchema = false });
         else
         {
             var optionsBuilder = new DbContextOptionsBuilder<CoffeeAppDbContext>();
@@ -27,6 +27,7 @@ public static class StartupDbExtensions
 
             using var newCoffeeContext = new CoffeeAppDbContext(optionsBuilder.Options);
             await newCoffeeContext.Database.EnsureCreatedAsync();
+            await newCoffeeContext.Database.MigrateAsync();
         }
     }
 }

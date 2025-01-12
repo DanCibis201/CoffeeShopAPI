@@ -1,20 +1,23 @@
 ﻿using CoffeeShop.Application.Commands.OrderCommands;
 using CoffeeShop.Database.SqlServer.Entities;
 using CoffeeShop.Database.SqlServer.Repositories;
+using CoffeeShop.Infrastructure.Creational.Builder;
 using MediatR;
 
 namespace CoffeeShop.Application.Handlers.OrderHandlers;
 
-public class UpsertOrderCommandHandler : IRequestHandler<UpsertOrderCommand, Unit>
+public class UpsertOrderCommandHandler : IRequestHandler<UpsertOrderCommand, Order>
 {
     private readonly OrderRepository _orderRepository;
+    private readonly OrderBuilder _orderBuilder;
 
-    public UpsertOrderCommandHandler(OrderRepository orderRepository)
+    public UpsertOrderCommandHandler(OrderRepository orderRepository, OrderBuilder orderBuilder)
     {
         _orderRepository = orderRepository;
+        _orderBuilder = orderBuilder;
     }
 
-    public async Task<Unit> Handle(UpsertOrderCommand request, CancellationToken cancellationToken)
+    public async Task<Order> Handle(UpsertOrderCommand request, CancellationToken cancellationToken)
     {
         var existingOrder = await _orderRepository.GetOrderByCoffeeIdAsync(request.CoffeeId);
 
@@ -22,19 +25,18 @@ public class UpsertOrderCommandHandler : IRequestHandler<UpsertOrderCommand, Uni
         {
             existingOrder.Quantity += request.Quantity;
             await _orderRepository.UpdateAsync(existingOrder);
+            return existingOrder;
         }
         else
         {
-            var newOrder = new Order
-            {
-                Id = Guid.NewGuid(),
-                CoffeeId = request.CoffeeId,
-                Quantity = request.Quantity,
-                OrderDate = DateTime.UtcNow
-            };
-            await _orderRepository.AddAsync(newOrder);
-        }
+            var newOrder = _orderBuilder
+                .WithCoffeeId(request.CoffeeId)
+                .WithQuantity(request.Quantity)
+                .WithOrderDate(DateTime.UtcNow)
+                .Build();
 
-        return Unit.Value;
+            await _orderRepository.AddAsync(newOrder);
+            return newOrder;
+        }
     }
 }

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeShop", "CoffeeShop.csproj", "{740A2E01-EA12-4FBA-A163-0025432940A0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{185A210F-C9D7-40ED-902C-482FF8D1C842} = {185A210F-C9D7-40ED-902C-482FF8D1C842}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{D5D8028A-71B8-46B6-915D-AED6432A67A1}"
 EndProject
@@ -13,13 +16,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeShop.Infrastructure.Core", "..\CoffeeShop.Infrastructure.Core\CoffeeShop.Infrastructure.Core.csproj", "{2C0E3217-DD31-4353-A6D0-BE57709DA4AA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{A2BEAB1A-FADF-48CA-BC6F-A1CF56C10273}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeShop.Security", "..\CoffeShop.Security\CoffeeShop.Security.csproj", "{B4441228-7030-4A1D-844C-DC5B04EE70EB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeShop.Infrastructure.Proxy", "..\CoffeeShop.Infrastructure.Proxy\CoffeeShop.Infrastructure.Proxy.csproj", "{16B541BD-D2C2-4DBD-996D-93A91284A794}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeShop.Infrastructure.Payment", "..\CoffeeShop.Infrastructure.Payment\CoffeeShop.Infrastructure.Payment.csproj", "{030CB640-8085-4247-8E36-6F30E63D1640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeShop.Infrastructure.Payment", "..\CoffeeShop.Infrastructure.Payment\CoffeeShop.Infrastructure.Payment.csproj", "{030CB640-8085-4247-8E36-6F30E63D1640}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeShop.Infrastructure.CoR", "..\CoffeeShop.Infrastructure.CoR\CoffeeShop.Infrastructure.CoR.csproj", "{185A210F-C9D7-40ED-902C-482FF8D1C842}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeShop.Infrastructure.Observer", "..\CoffeeShop.Infrastructure.Observer\CoffeeShop.Infrastructure.Observer.csproj", "{47DFBF42-DAF2-4028-8B56-5E005AA7C7EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{FF7530DA-8EDA-4102-949B-94FD503AB743}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeShop.Security", "..\CoffeeShop.Security\CoffeeShop.Security.csproj", "{B4180ACA-FF99-47A3-BA7E-454EA6194CD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeShop.Infrastructure.Creational", "..\CoffeeShop.Infrastructure.Creational\CoffeeShop.Infrastructure.Creational.csproj", "{833BD8ED-B026-4BCF-B768-D393FB038EB2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AA1252E9-9C86-4AD2-BADB-D66C9F8AC84F} = {AA1252E9-9C86-4AD2-BADB-D66C9F8AC84F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +51,6 @@ Global
 		{2C0E3217-DD31-4353-A6D0-BE57709DA4AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C0E3217-DD31-4353-A6D0-BE57709DA4AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C0E3217-DD31-4353-A6D0-BE57709DA4AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4441228-7030-4A1D-844C-DC5B04EE70EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4441228-7030-4A1D-844C-DC5B04EE70EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4441228-7030-4A1D-844C-DC5B04EE70EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4441228-7030-4A1D-844C-DC5B04EE70EB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{16B541BD-D2C2-4DBD-996D-93A91284A794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{16B541BD-D2C2-4DBD-996D-93A91284A794}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16B541BD-D2C2-4DBD-996D-93A91284A794}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +59,22 @@ Global
 		{030CB640-8085-4247-8E36-6F30E63D1640}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{030CB640-8085-4247-8E36-6F30E63D1640}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{030CB640-8085-4247-8E36-6F30E63D1640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{185A210F-C9D7-40ED-902C-482FF8D1C842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{185A210F-C9D7-40ED-902C-482FF8D1C842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{185A210F-C9D7-40ED-902C-482FF8D1C842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{185A210F-C9D7-40ED-902C-482FF8D1C842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47DFBF42-DAF2-4028-8B56-5E005AA7C7EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47DFBF42-DAF2-4028-8B56-5E005AA7C7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47DFBF42-DAF2-4028-8B56-5E005AA7C7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47DFBF42-DAF2-4028-8B56-5E005AA7C7EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4180ACA-FF99-47A3-BA7E-454EA6194CD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4180ACA-FF99-47A3-BA7E-454EA6194CD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4180ACA-FF99-47A3-BA7E-454EA6194CD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4180ACA-FF99-47A3-BA7E-454EA6194CD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{833BD8ED-B026-4BCF-B768-D393FB038EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833BD8ED-B026-4BCF-B768-D393FB038EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833BD8ED-B026-4BCF-B768-D393FB038EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833BD8ED-B026-4BCF-B768-D393FB038EB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,9 +82,12 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{AA1252E9-9C86-4AD2-BADB-D66C9F8AC84F} = {D5D8028A-71B8-46B6-915D-AED6432A67A1}
 		{2C0E3217-DD31-4353-A6D0-BE57709DA4AA} = {B5C1C675-BAB8-4FC8-82C1-7A550962C259}
-		{B4441228-7030-4A1D-844C-DC5B04EE70EB} = {A2BEAB1A-FADF-48CA-BC6F-A1CF56C10273}
 		{16B541BD-D2C2-4DBD-996D-93A91284A794} = {B5C1C675-BAB8-4FC8-82C1-7A550962C259}
 		{030CB640-8085-4247-8E36-6F30E63D1640} = {B5C1C675-BAB8-4FC8-82C1-7A550962C259}
+		{185A210F-C9D7-40ED-902C-482FF8D1C842} = {B5C1C675-BAB8-4FC8-82C1-7A550962C259}
+		{47DFBF42-DAF2-4028-8B56-5E005AA7C7EB} = {B5C1C675-BAB8-4FC8-82C1-7A550962C259}
+		{B4180ACA-FF99-47A3-BA7E-454EA6194CD2} = {FF7530DA-8EDA-4102-949B-94FD503AB743}
+		{833BD8ED-B026-4BCF-B768-D393FB038EB2} = {B5C1C675-BAB8-4FC8-82C1-7A550962C259}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1BA455A-A5C0-4007-BBF7-11A1B2EB0624}

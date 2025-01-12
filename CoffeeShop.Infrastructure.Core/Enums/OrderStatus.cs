@@ -2,11 +2,12 @@
 
 public enum OrderStatus
 {
-    Placed = 1, 
-    Paid = 2,
-    Shipped = 3,
-    Delivered = 4,
-    Canceled = 5,
-    Returned = 6,
-    Removed = 7
+    Placed = 1,
+    Updated = 2,
+    Paid = 3,
+    Shipped = 4,
+    Delivered = 5,
+    Canceled = 6,
+    Returned = 7,
+    Removed = 8
 }

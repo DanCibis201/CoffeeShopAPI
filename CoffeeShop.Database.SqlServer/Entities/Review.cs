@@ -13,4 +13,11 @@ public class Review
     public int Rating { get; set; }
 
     public Coffee? Coffee { get; set; }
+
+    public Review Clone()
+    {
+        var cloned = (Review)this.MemberwiseClone();
+
+        return cloned;
+    }
 }

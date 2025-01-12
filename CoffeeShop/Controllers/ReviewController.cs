@@ -1,5 +1,4 @@
-﻿using CoffeeShop.Application.Commands.OrderCommands;
-using CoffeeShop.Application.Commands.ReviewCommands;
+﻿using CoffeeShop.Application.Commands.ReviewCommands;
 using CoffeeShop.Application.Queries.ReviewQueries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

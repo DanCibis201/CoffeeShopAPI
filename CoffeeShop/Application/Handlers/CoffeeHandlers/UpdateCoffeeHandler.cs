@@ -1,6 +1,5 @@
 ﻿using CoffeeShop.Application.Commands.CoffeeCommands;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Database.SqlServer.Repositories;
 using CoffeeShop.Infrastructure.Proxy.Proxies;
 using MediatR;
 

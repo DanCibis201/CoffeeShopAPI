@@ -18,7 +18,7 @@ public static class StartupSecurityDbExtensions
         var isDatabaseCreated = securityContext.Database.EnsureCreated();
 
         if (isDatabaseCreated)
-            await securityContext.MigrateToLatestVersionAsync(new DbMigrationsOptions { ResetDatabaseSchema = true });
+            await securityContext.MigrateToLatestVersionAsync(new DbMigrationsOptions { ResetDatabaseSchema = false });
         else
         {
             var optionsBuilder = new DbContextOptionsBuilder<CoffeeSecurityDbContext>();

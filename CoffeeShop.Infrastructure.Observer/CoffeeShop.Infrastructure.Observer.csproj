@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Refinements\**" />
-    <EmbeddedResource Remove="Refinements\**" />
-    <None Remove="Refinements\**" />
+    <ProjectReference Include="..\CoffeeShop.Database.SqlServer\CoffeeShop.Database.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>
