@@ -1,22 +1,22 @@
 ﻿using CoffeeShop.Application.Commands.OrderCommands;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
+using CoffeeShop.Infrastructure.Proxy.Proxies;
 using MediatR;
 
 namespace CoffeeShop.Application.Handlers.OrderHandlers;
 
 public class UpdateOrderHandler : IRequestHandler<UpdateOrderCommand, Unit>
 {
-    private readonly IRepository<Order> _repository;
+    private readonly IProxy<Order> _proxy;
 
-    public UpdateOrderHandler(IRepository<Order> repository)
+    public UpdateOrderHandler(IProxy<Order> proxy)
     {
-        _repository = repository;
+        _proxy = proxy;
     }
 
     public async Task<Unit> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
     {
-        var order = await _repository.GetByIdAsync(request.Id);
+        var order = await _proxy.GetByIdAsync(request.Id);
         if (order == null)
         {
             throw new KeyNotFoundException("Order not found");
@@ -26,7 +26,7 @@ public class UpdateOrderHandler : IRequestHandler<UpdateOrderCommand, Unit>
         order.Quantity = request.Quantity;
         order.OrderDate = request.OrderDate;
 
-        await _repository.UpdateAsync(order);
+        await _proxy.UpdateAsync(order);
         return Unit.Value;
     }
 }

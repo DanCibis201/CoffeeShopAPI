@@ -1,22 +1,22 @@
 ﻿using CoffeeShop.Application.Commands.CoffeeCommands;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
+using CoffeeShop.Infrastructure.Proxy.Proxies;
 using MediatR;
 
 namespace CoffeeShop.Application.Handlers.CoffeeHandlers;
 
 public class DeleteCoffeeByIdHandler : IRequestHandler<DeleteCoffeeByIdCommand, Unit>
 {
-    private readonly IRepository<Coffee> _repository;
+    private readonly IProxy<Coffee> _proxy;
 
-    public DeleteCoffeeByIdHandler(IRepository<Coffee> repository)
+    public DeleteCoffeeByIdHandler(IProxy<Coffee> proxy)
     {
-        _repository = repository;
+        _proxy = proxy;
     }
 
     public async Task<Unit> Handle(DeleteCoffeeByIdCommand request, CancellationToken cancellationToken)
     {
-        await _repository.DeleteAsync(request.Id);
+        await _proxy.DeleteAsync(request.Id);
         return Unit.Value;
     }
 }

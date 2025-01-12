@@ -1,10 +1,9 @@
 ﻿using CoffeeShop.Database.SqlServer.Context;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace CoffeeShop.Database.Repositories;
+namespace CoffeeShop.Database.SqlServer.Repositories;
 
 public class ReviewRepository : IRepository<Review>
 {
@@ -92,6 +91,20 @@ public class ReviewRepository : IRepository<Review>
         catch (Exception ex)
         {
             _logger.LogError(ex, $"Error occurred while deleting review by ID: {id}");
+            throw;
+        }
+    }
+
+    public async Task<Review?> GetUserReviewByCoffeeIdAsync(Guid coffeeId, string userName)
+    {
+        try
+        {
+            return await _context.Reviews.FirstOrDefaultAsync(o => o.CoffeeId == coffeeId &&    
+                                                                   o.UserName == userName);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error occurred while finding review by coffeeId: {coffeeId} for user name: {userName}.");
             throw;
         }
     }

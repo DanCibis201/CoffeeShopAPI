@@ -1,21 +1,21 @@
 ﻿using CoffeeShop.Application.Queries.ReviewQueries;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
+using CoffeeShop.Infrastructure.Proxy.Proxies;
 using MediatR;
 
 namespace CoffeeShop.Application.Handlers.ReviewHandlers;
 
 public class GetReviewByIdHandler : IRequestHandler<GetReviewByIdQuery, Review>
 {
-    private readonly IRepository<Review> _repository;
+    private readonly IProxy<Review> _proxy;
 
-    public GetReviewByIdHandler(IRepository<Review> repository)
+    public GetReviewByIdHandler(IProxy<Review> proxy)
     {
-        _repository = repository;
+        _proxy = proxy;
     }
 
     public async Task<Review> Handle(GetReviewByIdQuery request, CancellationToken cancellationToken)
     {
-        return await _repository.GetByIdAsync(request.Id);
+        return await _proxy.GetByIdAsync(request.Id);
     }
 }

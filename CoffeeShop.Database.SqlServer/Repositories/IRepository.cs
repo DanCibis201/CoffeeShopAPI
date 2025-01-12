@@ -1,4 +1,4 @@
-﻿namespace CoffeeShop.Infrastructure.Repositories;
+﻿namespace CoffeeShop.Database.SqlServer.Repositories;
 
 public interface IRepository<T>
 {

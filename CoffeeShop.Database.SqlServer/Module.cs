@@ -1,7 +1,6 @@
-﻿using CoffeeShop.Database.Repositories;
-using CoffeeShop.Database.SqlServer.Entities;
+﻿using CoffeeShop.Database.SqlServer.Entities;
+using CoffeeShop.Database.SqlServer.Repositories;
 using CoffeeShop.Infrastructure.Core.DependencyInjection;
-using CoffeeShop.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CoffeeShop.Database.SqlServer;
@@ -11,6 +10,9 @@ public class Module : DependencyModule
     public override void Load(IServiceCollection services)
     {
         services.AddSingleton<IDatabaseDeployer, Deployer>();
+
+        services.AddScoped<OrderRepository>();
+        services.AddScoped<ReviewRepository>();
 
         services.AddScoped<IRepository<Coffee>, CoffeeRepository>();
         services.AddScoped<IRepository<Review>, ReviewRepository>();

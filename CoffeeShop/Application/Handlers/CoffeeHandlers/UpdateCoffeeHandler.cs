@@ -1,22 +1,22 @@
 ﻿using CoffeeShop.Application.Commands.CoffeeCommands;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
+using CoffeeShop.Infrastructure.Proxy.Proxies;
 using MediatR;
 
 namespace CoffeeShop.Application.Handlers.CoffeeHandlers;
 
 public class UpdateCoffeeHandler : IRequestHandler<UpdateCoffeeCommand, Unit>
 {
-    private readonly IRepository<Coffee> _repository;
+    private readonly IProxy<Coffee> _proxy;
 
-    public UpdateCoffeeHandler(IRepository<Coffee> repository)
+    public UpdateCoffeeHandler(IProxy<Coffee> proxy)
     {
-        _repository = repository;
+        _proxy = proxy;
     }
 
     public async Task<Unit> Handle(UpdateCoffeeCommand request, CancellationToken cancellationToken)
     {
-        var coffee = await _repository.GetByIdAsync(request.Id);
+        var coffee = await _proxy.GetByIdAsync(request.Id);
         if (coffee == null)
         {
             throw new KeyNotFoundException("Coffee not found");
@@ -30,7 +30,7 @@ public class UpdateCoffeeHandler : IRequestHandler<UpdateCoffeeCommand, Unit>
         coffee.Type = request.Type;
         coffee.Brand = request.Brand;
 
-        await _repository.UpdateAsync(coffee);
+        await _proxy.UpdateAsync(coffee);
         return Unit.Value;
     }
 }

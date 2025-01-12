@@ -1,5 +1,9 @@
 ﻿using CoffeeShop.Application.Commands.OrderCommands;
 using CoffeeShop.Application.Queries.OrderQueries;
+using CoffeeShop.Database.SqlServer.Entities;
+using CoffeeShop.Infrastructure.CoR.Handlers;
+using CoffeeShop.Infrastructure.CoR.Services;
+using CoffeeShop.Infrastructure.Observer;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,26 +15,13 @@ public class OrderController : ControllerBase
 {
     private readonly IMediator _mediator;
     private readonly ILogger<OrderController> _logger;
+    private readonly IServiceProvider _serviceProvider;
 
-    public OrderController(IMediator mediator, ILogger<OrderController> logger)
+    public OrderController(IMediator mediator, ILogger<OrderController> logger, IServiceProvider serviceProvider)
     {
         _mediator = mediator;
         _logger = logger;
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> CreateOrder([FromBody] CreateOrderCommand command)
-    {
-        try
-        {
-            await _mediator.Send(command);
-            return Ok();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError($"Error while creating order. Error message: {ex.Message}");
-            throw;
-        }
+        _serviceProvider = serviceProvider;
     }
 
     [HttpGet]
@@ -92,6 +83,19 @@ public class OrderController : ControllerBase
         try
         {
             await _mediator.Send(command);
+
+            var orderStatus = _serviceProvider.GetService<OrderStatusSubject>();
+            var dashboardUpdate = _serviceProvider.GetService<LoggingService>();
+            var updateService = _serviceProvider.GetService<UIUpdateService>();
+
+            _logger.LogInformation($"Observing the processes for the following order with ID: {id}");
+
+            orderStatus.Attach(dashboardUpdate);
+            orderStatus.Attach(updateService);
+
+            var product = new Order { Id = id };
+            orderStatus.UpdateOrderStatus(product);
+
             return NoContent();
         }
         catch (KeyNotFoundException ex)
@@ -103,6 +107,31 @@ public class OrderController : ControllerBase
         {
             _logger.LogError($"Error while updating order. Error message: {ex.Message}");
             throw;
+        }
+    }
+
+    [HttpPost("upsert")]
+    public async Task<IActionResult> UpsertOrder([FromBody] UpsertOrderCommand command)
+    {
+        try
+        {
+            var order = await _mediator.Send(command);
+
+            var stockCheckHandler = _serviceProvider.GetService<StockCheckHandler>();
+            var orderPlacementHandler = _serviceProvider.GetService<OrderPlacementHandler>();
+            var paymentHandler = _serviceProvider.GetService<PaymentHandler>();
+
+            stockCheckHandler.SetNext(paymentHandler);
+
+            var orderProcessingService = new OrderProcessingService(stockCheckHandler);
+            orderProcessingService.ProcessOrder(order);
+
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error while upserting order. Message: {ex.Message}");
+            return StatusCode(500, "Internal Server Error");
         }
     }
 }

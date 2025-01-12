@@ -9,8 +9,15 @@ public class Review
     public string? UserName { get; set; }
     public string Comment { get; set; }
 
-    [Range(1, 10, ErrorMessage = "Rating must be between 1 and 10")]
+    [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5")]
     public int Rating { get; set; }
 
     public Coffee? Coffee { get; set; }
+
+    public Review Clone()
+    {
+        var cloned = (Review)this.MemberwiseClone();
+
+        return cloned;
+    }
 }

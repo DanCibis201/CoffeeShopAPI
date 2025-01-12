@@ -1,10 +1,9 @@
 ﻿using CoffeeShop.Database.SqlServer.Context;
 using CoffeeShop.Database.SqlServer.Entities;
-using CoffeeShop.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace CoffeeShop.Database.Repositories
+namespace CoffeeShop.Database.SqlServer.Repositories
 {
     public class OrderRepository : IRepository<Order>
     {
@@ -97,6 +96,19 @@ namespace CoffeeShop.Database.Repositories
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error occurred while deleting order by ID: {id}");
+                throw;
+            }
+        }
+
+        public async Task<Order?> GetOrderByCoffeeIdAsync(Guid coffeeId)
+        {
+            try
+            {
+                return await _context.Orders.FirstOrDefaultAsync(o => o.CoffeeId == coffeeId);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while finding order by coffeeId: {coffeeId}.");
                 throw;
             }
         }
