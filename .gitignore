@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/CoffeShop.Security/bin/Debug/net8.0
+/CoffeShop.Security/obj
