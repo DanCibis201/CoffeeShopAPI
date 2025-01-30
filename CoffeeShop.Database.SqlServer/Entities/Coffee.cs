@@ -1,9 +1,10 @@
-﻿using CoffeeShop.Infrastructure.Core.Enums;
+﻿using CoffeeShop.Database.SqlServer.Entities.Interfaces;
+using CoffeeShop.Infrastructure.Core.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace CoffeeShop.Database.SqlServer.Entities;
 
-public class Coffee
+public class Coffee : ISoftDeletable
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
@@ -14,6 +15,7 @@ public class Coffee
     public string? ImageUrl { get; set; }
     public CoffeeType? Type { get; set; }
     public CoffeeBrand? Brand { get; set; }
+    public bool IsDeleted { get; set; }
 
     public ICollection<Review>? Reviews { get; set; }
     public ICollection<Order>? Orders { get; set; }

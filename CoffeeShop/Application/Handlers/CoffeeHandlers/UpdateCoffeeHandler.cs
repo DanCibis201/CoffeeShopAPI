@@ -29,6 +29,7 @@ public class UpdateCoffeeHandler : IRequestHandler<UpdateCoffeeCommand, Unit>
         coffee.ImageUrl = request.ImageUrl;
         coffee.Type = request.Type;
         coffee.Brand = request.Brand;
+        coffee.IsDeleted = request.IsDeleted;
 
         await _proxy.UpdateAsync(coffee);
         return Unit.Value;

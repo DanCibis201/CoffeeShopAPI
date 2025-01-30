@@ -10,9 +10,9 @@ public class UpdateReviewCommand : IRequest<Unit>
     public string? UserName { get; set; }
     public string Comment { get; set; }
     public int Rating { get; set; }
-    
+
     [JsonConstructor]
-    public UpdateReviewCommand(Guid id, Guid coffeeId, 
+    public UpdateReviewCommand(Guid id, Guid coffeeId,
         string userName, string comment, int rating)
     {
         Id = id;

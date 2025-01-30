@@ -16,7 +16,7 @@ public class DeleteCoffeeByIdHandler : IRequestHandler<DeleteCoffeeByIdCommand, 
 
     public async Task<Unit> Handle(DeleteCoffeeByIdCommand request, CancellationToken cancellationToken)
     {
-        await _proxy.DeleteAsync(request.Id);
+        await _proxy.SoftDeleteAsync(request.Id);
         return Unit.Value;
     }
 }

@@ -14,12 +14,13 @@ public class UpdateCoffeeCommand : IRequest<Unit>
     public string? ImageUrl { get; set; }
     public CoffeeType? Type { get; set; }
     public CoffeeBrand? Brand { get; set; }
+    public bool IsDeleted { get; set; }
 
     [JsonConstructor]
-    public UpdateCoffeeCommand(Guid id, string name, 
-        decimal price, string? description, 
+    public UpdateCoffeeCommand(Guid id, string name,
+        decimal price, string? description,
         string? imageUrl, int? intensity,
-        CoffeeType? type, CoffeeBrand? brand)
+        CoffeeType? type, CoffeeBrand? brand, bool isDeleted)
     {
         Id = id;
         Name = name;
@@ -29,5 +30,6 @@ public class UpdateCoffeeCommand : IRequest<Unit>
         Intensity = intensity;
         Type = type;
         Brand = brand;
+        IsDeleted = isDeleted;
     }
 }
