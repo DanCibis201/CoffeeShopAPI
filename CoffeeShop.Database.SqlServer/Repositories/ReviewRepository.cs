@@ -99,7 +99,7 @@ public class ReviewRepository : IRepository<Review>
     {
         try
         {
-            return await _context.Reviews.FirstOrDefaultAsync(o => o.CoffeeId == coffeeId &&    
+            return await _context.Reviews.FirstOrDefaultAsync(o => o.CoffeeId == coffeeId &&
                                                                    o.UserName == userName);
         }
         catch (Exception ex)
@@ -107,5 +107,15 @@ public class ReviewRepository : IRepository<Review>
             _logger.LogError(ex, $"Error occurred while finding review by coffeeId: {coffeeId} for user name: {userName}.");
             throw;
         }
+    }
+
+    public Task SoftDeleteAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task RestoreAsync(Guid id)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -106,11 +106,21 @@ namespace CoffeeShop.Database.SqlServer.Repositories
             {
                 return await _context.Orders.FirstOrDefaultAsync(o => o.CoffeeId == coffeeId);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error occurred while finding order by coffeeId: {coffeeId}.");
                 throw;
             }
+        }
+
+        public Task SoftDeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RestoreAsync(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,7 +1,5 @@
-using CoffeeShop.Database.SqlServer.AutoMigration;
 using CoffeeShop.Database.SqlServer.DependencyInjection;
 using CoffeeShop.Infrastructure.Core.DependencyInjection;
-using CoffeeShop.Security.AutoMigration;
 using CoffeeShop.Security.DependencyInjection;
 using CoffeeShop.Security.Models;
 using CoffeeShop.Security.Modules;
@@ -23,15 +21,14 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.LoadDependencyModules(
     typeof(CoffeeShop.Database.SqlServer.Module).Assembly,
     typeof(CoffeeShop.Infrastructure.Proxy.Module).Assembly,
-    typeof(CoffeeShop.Infrastructure.CoR.Module).Assembly,
-    typeof(CoffeeShop.Infrastructure.Observer.Module).Assembly,
-    typeof(CoffeeShop.Infrastructure.Creational.Module).Assembly,
     typeof(ModuleServices).Assembly);
 
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
 });
+
+builder.Services.AddMemoryCache();
 
 var corsOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
 builder.Services.AddCors(options =>
@@ -71,7 +68,5 @@ app.UseEndpoints(endpoints =>
     });
 
 app.MapIdentityApi<User>();
-app.CreateSecurityDbIfDoesNotExist();
-app.CreateDbIfDoesNotExist();
 
 app.Run();

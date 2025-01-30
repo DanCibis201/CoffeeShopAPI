@@ -19,9 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CoffeeShop.Database.SqlServer\CoffeeShop.Database.SqlServer.csproj" />
     <ProjectReference Include="..\CoffeeShop.Infrastructure.Core\CoffeeShop.Infrastructure.Core.csproj" />
-    <ProjectReference Include="..\CoffeeShop.Infrastructure.CoR\CoffeeShop.Infrastructure.CoR.csproj" />
-    <ProjectReference Include="..\CoffeeShop.Infrastructure.Creational\CoffeeShop.Infrastructure.Creational.csproj" />
-    <ProjectReference Include="..\CoffeeShop.Infrastructure.Observer\CoffeeShop.Infrastructure.Observer.csproj" />
     <ProjectReference Include="..\CoffeeShop.Infrastructure.Payment\CoffeeShop.Infrastructure.Payment.csproj" />
     <ProjectReference Include="..\CoffeeShop.Infrastructure.Proxy\CoffeeShop.Infrastructure.Proxy.csproj" />
     <ProjectReference Include="..\CoffeeShop.Security\CoffeeShop.Security.csproj" />

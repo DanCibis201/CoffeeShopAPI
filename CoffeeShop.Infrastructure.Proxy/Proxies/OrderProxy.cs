@@ -39,6 +39,16 @@ public class OrderProxy : IProxy<Order>
         return await _repository.GetByIdAsync(id);
     }
 
+    public Task RestoreAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task SoftDeleteAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task UpdateAsync(Order order)
     {
         _logger.LogInformation($"Updating order: {order.Id}");

@@ -44,4 +44,14 @@ public class ReviewProxy : IProxy<Review>
         _logger.LogInformation($"Deleting review by ID: {id}");
         await _repository.DeleteAsync(id);
     }
+
+    public Task SoftDeleteAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task RestoreAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
 }

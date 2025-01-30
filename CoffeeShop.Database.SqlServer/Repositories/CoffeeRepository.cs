@@ -1,6 +1,7 @@
 ﻿using CoffeeShop.Database.SqlServer.Context;
 using CoffeeShop.Database.SqlServer.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
 namespace CoffeeShop.Database.SqlServer.Repositories;
@@ -9,11 +10,15 @@ public class CoffeeRepository : IRepository<Coffee>
 {
     private readonly CoffeeAppDbContext _context;
     private readonly ILogger<CoffeeRepository> _logger;
+    private readonly IMemoryCache _cache;
+    private readonly TimeSpan _cacheDuration = TimeSpan.FromDays(1);
+    private const string CoffeeCacheKey = "CoffeeList";
 
-    public CoffeeRepository(CoffeeAppDbContext context, ILogger<CoffeeRepository> logger)
+    public CoffeeRepository(CoffeeAppDbContext context, ILogger<CoffeeRepository> logger, IMemoryCache cache)
     {
         _context = context;
         _logger = logger;
+        _cache = cache;
     }
 
     public async Task<Coffee> GetByIdAsync(Guid id)
@@ -35,19 +40,23 @@ public class CoffeeRepository : IRepository<Coffee>
 
     public async Task<IEnumerable<Coffee>> GetAllAsync()
     {
-        try
+        if (!_cache.TryGetValue(CoffeeCacheKey, out IEnumerable<Coffee>? coffees))
         {
-            return await _context.Coffees
-                .Include(r => r.Reviews)
-                .Include(o => o.Orders)
-                .AsSplitQuery()
-                .ToListAsync();
+            _logger.LogInformation("Fetching coffee list from database...");
+            coffees = await _context.Coffees.Where(c => !c.IsDeleted).ToListAsync();
+
+            var cacheOptions = new MemoryCacheEntryOptions()
+                .SetAbsoluteExpiration(_cacheDuration)
+                .SetSlidingExpiration(TimeSpan.FromMinutes(10));
+
+            _cache.Set(CoffeeCacheKey, coffees, cacheOptions);
         }
-        catch (Exception ex)
+        else
         {
-            _logger.LogError(ex, "Error occurred while getting all coffees");
-            throw;
+            _logger.LogInformation("Fetching coffee list from cache...");
         }
+
+        return coffees!;
     }
 
     public async Task AddAsync(Coffee entity)
@@ -56,6 +65,7 @@ public class CoffeeRepository : IRepository<Coffee>
         {
             await _context.Coffees.AddAsync(entity);
             await _context.SaveChangesAsync();
+            _cache.Remove(CoffeeCacheKey);
             _logger.LogInformation($"Coffee added successfully: {entity.Name}");
         }
         catch (Exception ex)
@@ -99,6 +109,57 @@ public class CoffeeRepository : IRepository<Coffee>
         catch (Exception ex)
         {
             _logger.LogError(ex, $"Error occurred while deleting coffee by ID: {id}");
+            throw;
+        }
+    }
+
+    public async Task SoftDeleteAsync(Guid id)
+    {
+        try
+        {
+            var coffee = await _context.Coffees.FindAsync(id);
+            if (coffee != null)
+            {
+                coffee.IsDeleted = true;
+                await _context.SaveChangesAsync();
+                _logger.LogInformation($"Coffee soft deleted successfully: {coffee.Name}");
+            }
+            else
+            {
+                _logger.LogWarning($"Coffee not found: ID {id}");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error occurred while soft deleting coffee by ID: {id}");
+            throw;
+        }
+    }
+
+    public async Task RestoreAsync(Guid id)
+    {
+        try
+        {
+            var coffee = await _context.Coffees
+                .IgnoreQueryFilters()
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (coffee != null)
+            {
+                coffee.IsDeleted = false;
+                _context.Coffees.Update(coffee);
+
+                await _context.SaveChangesAsync();
+                _logger.LogInformation($"Coffee restored successfully: {coffee.Name}");
+            }
+            else
+            {
+                _logger.LogWarning($"Coffee not found: ID {id}");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error occurred while restoring coffee by ID: {id}");
             throw;
         }
     }

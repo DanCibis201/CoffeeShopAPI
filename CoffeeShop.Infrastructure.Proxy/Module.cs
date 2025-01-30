@@ -12,5 +12,6 @@ public class Module : DependencyModule
         services.AddScoped<IProxy<Coffee>, CoffeeProxy>();
         services.AddScoped<IProxy<Order>, OrderProxy>();
         services.AddScoped<IProxy<Review>, ReviewProxy>();
+        services.AddScoped<IProxy<Subscription>, SubscriptionProxy>();
     }
 }

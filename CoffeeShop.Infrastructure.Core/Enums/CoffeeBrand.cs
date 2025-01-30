@@ -7,5 +7,7 @@ public enum CoffeeBrand
     Nescafe = 2,
     Jacobs = 3,
     DeathWish = 4,
-    Starbucks = 5
+    Starbucks = 5,
+    JuliusMeinl = 6,
+    Davidoff = 7
 }

@@ -6,10 +6,10 @@ namespace CoffeeShop.Database.SqlServer.Context;
 public class CoffeeAppDbContext : DbContext
 {
     public CoffeeAppDbContext(DbContextOptions<CoffeeAppDbContext> options) : base(options) { }
-
     public DbSet<Coffee> Coffees { get; set; }
     public DbSet<Review> Reviews { get; set; }
     public DbSet<Order> Orders { get; set; }
+    public DbSet<Subscription> Subscriptions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -36,6 +36,10 @@ public class CoffeeAppDbContext : DbContext
         modelBuilder.Entity<Coffee>()
             .Property(c => c.ImageUrl)
             .HasColumnType("nvarchar(max)");
+
+        modelBuilder.Entity<Coffee>()
+            .HasQueryFilter(c => !c.IsDeleted);
+
         #endregion
 
         #region ReviewBuilder
@@ -48,6 +52,20 @@ public class CoffeeAppDbContext : DbContext
         modelBuilder.Entity<Order>()
             .ToTable("Orders")
             .HasKey(o => o.Id);
+        #endregion
+
+        #region Subscription
+        modelBuilder.Entity<Subscription>()
+            .ToTable("Subscriptions")
+            .HasKey(s => s.Id);
+
+        modelBuilder.Entity<Subscription>()
+            .Property(s => s.Benefits)
+            .HasColumnType("nvarchar(max)");
+
+        modelBuilder.Entity<Subscription>()
+            .HasQueryFilter(s => !s.IsDeleted);
+
         #endregion
 
         base.OnModelCreating(modelBuilder);

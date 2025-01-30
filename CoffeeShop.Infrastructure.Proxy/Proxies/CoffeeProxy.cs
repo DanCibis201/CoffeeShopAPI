@@ -44,4 +44,16 @@ public class CoffeeProxy : IProxy<Coffee>
         _logger.LogInformation($"Deleting coffee by ID: {id}");
         await _repository.DeleteAsync(id);
     }
+
+    public async Task SoftDeleteAsync(Guid id)
+    {
+        _logger.LogInformation($"Soft deleting coffee by ID: {id}");
+        await _repository.SoftDeleteAsync(id);
+    }
+
+    public async Task RestoreAsync(Guid id)
+    {
+        _logger.LogInformation($"Restoring coffee by ID: {id}");
+        await _repository.RestoreAsync(id);
+    }
 }

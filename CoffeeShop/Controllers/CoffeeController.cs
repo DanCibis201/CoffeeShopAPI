@@ -81,6 +81,21 @@ public class CoffeeController : ControllerBase
         }
     }
 
+    [HttpPost("{id}/restore")]
+    public async Task<IActionResult> RestoreCoffeeById([FromRoute] Guid id)
+    {
+        try
+        {
+            await _mediator.Send(new RestoreCoffeeByIdCommand(id));
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error while restoring coffee. Error message: {ex.Message}");
+            throw;
+        }
+    }
+
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateCoffeeById([FromRoute] Guid id, [FromBody] UpdateCoffeeCommand command)
     {

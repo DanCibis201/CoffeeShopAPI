@@ -7,4 +7,6 @@ public interface IProxy<T>
     Task AddAsync(T item);
     Task UpdateAsync(T item);
     Task DeleteAsync(Guid id);
+    Task SoftDeleteAsync(Guid id);
+    Task RestoreAsync(Guid id);
 }
