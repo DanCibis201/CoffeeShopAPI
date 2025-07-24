@@ -7,6 +7,7 @@ This repository contains the Backend API for the CoffeeShop Ecommerce applicatio
 - [Technologies Used](#technologies-used)
 - [Architecture](#architecture)
 - [Getting Started](#getting-started)
+- [Running with Docker](#running-with-docker)
 - [Endpoints](#endpoints)
 - [License](#license)
 

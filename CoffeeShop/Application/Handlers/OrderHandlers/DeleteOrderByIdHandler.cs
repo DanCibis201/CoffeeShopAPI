@@ -5,14 +5,9 @@ using MediatR;
 
 namespace CoffeeShop.Application.Handlers.OrderHandlers;
 
-public class DeleteOrderByIdHandler : IRequestHandler<DeleteOrderByIdCommand, Unit>
+public class DeleteOrderByIdHandler(IProxy<Order> proxy) : IRequestHandler<DeleteOrderByIdCommand, Unit>
 {
-    private readonly IProxy<Order> _proxy;
-
-    public DeleteOrderByIdHandler(IProxy<Order> proxy)
-    {
-        _proxy = proxy;
-    }
+    private readonly IProxy<Order> _proxy = proxy;
 
     public async Task<Unit> Handle(DeleteOrderByIdCommand command, CancellationToken cancellationToken)
     {

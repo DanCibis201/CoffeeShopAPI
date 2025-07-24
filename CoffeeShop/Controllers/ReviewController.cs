@@ -9,16 +9,10 @@ namespace CoffeeShop.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class ReviewController : ControllerBase
+public class ReviewController(IMediator mediator, ILogger<ReviewController> logger) : ControllerBase
 {
-    private readonly IMediator _mediator;
-    private readonly ILogger<ReviewController> _logger;
-
-    public ReviewController(IMediator mediator, ILogger<ReviewController> logger)
-    {
-        _mediator = mediator;
-        _logger = logger;
-    }
+    private readonly IMediator _mediator = mediator;
+    private readonly ILogger<ReviewController> _logger = logger;
 
     [HttpGet]
     [AllowAnonymous]

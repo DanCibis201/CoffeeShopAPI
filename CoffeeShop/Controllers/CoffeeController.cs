@@ -7,16 +7,10 @@ namespace CoffeeShop.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CoffeeController : ControllerBase
+public class CoffeeController(IMediator mediator, ILogger<CoffeeController> logger) : ControllerBase
 {
-    private readonly IMediator _mediator;
-    private readonly ILogger<CoffeeController> _logger;
-
-    public CoffeeController(IMediator mediator, ILogger<CoffeeController> logger)
-    {
-        _mediator = mediator;
-        _logger = logger;
-    }
+    private readonly IMediator _mediator = mediator;
+    private readonly ILogger<CoffeeController> _logger = logger;
 
     [HttpPost]
     public async Task<IActionResult> AddCoffeeBrand(CreateCoffeeCommand command)

@@ -15,24 +15,16 @@ namespace CoffeeShop.Controllers;
 [Authorize]
 [Route("api/[controller]")]
 [ApiController]
-public class SubscriptionController : ControllerBase
+public class SubscriptionController(
+             IMediator mediator,
+             ILogger<SubscriptionController> logger,
+             UserManager<User> userManager,
+             CoffeeAppDbContext context) : ControllerBase
 {
-    private readonly IMediator _mediator;
-    private readonly ILogger<SubscriptionController> _logger;
-    private readonly UserManager<User> _userManager;
-    private readonly CoffeeAppDbContext _context;
-
-    public SubscriptionController(
-        IMediator mediator,
-        ILogger<SubscriptionController> logger,
-        UserManager<User> userManager,
-        CoffeeAppDbContext context)
-    {
-        _mediator = mediator;
-        _logger = logger;
-        _userManager = userManager;
-        _context = context;
-    }
+    private readonly IMediator _mediator = mediator;
+    private readonly ILogger<SubscriptionController> _logger = logger;
+    private readonly UserManager<User> _userManager = userManager;
+    private readonly CoffeeAppDbContext _context = context;
 
     [HttpPost("upsert")]
     public async Task<IActionResult> AddSubscriptionPlan(UpsertSubscriptionCommand command)

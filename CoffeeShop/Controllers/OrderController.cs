@@ -7,15 +7,10 @@ namespace CoffeeShop.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class OrderController : ControllerBase
+public class OrderController(IMediator mediator, ILogger<OrderController> logger, IServiceProvider serviceProvider) : ControllerBase
 {
-    private readonly IMediator _mediator;
-    private readonly ILogger<OrderController> _logger;
-    public OrderController(IMediator mediator, ILogger<OrderController> logger, IServiceProvider serviceProvider)
-    {
-        _mediator = mediator;
-        _logger = logger;
-    }
+    private readonly IMediator _mediator = mediator;
+    private readonly ILogger<OrderController> _logger = logger;
 
     [HttpGet]
     public async Task<IActionResult> GetAllOrders()
