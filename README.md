@@ -13,7 +13,7 @@ This repository contains the Backend API for the CoffeeShop Ecommerce applicatio
 
 ## Technologies Used
 
-- **.NET 8** - Web framework for building modern web applications.
+- **.NET 9** - Web framework for building modern web applications.
 - **Entity Framework Core** - Object-relational mapper (ORM) for database interactions.
 - **MediatR** - Library to implement the Mediator pattern, used for handling commands and queries.
 - **CQRS** - Architectural pattern for separating read and write operations.
